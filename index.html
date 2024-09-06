@@ -13,6 +13,26 @@
 
 <body>
 
+  <div id="app" class="container">
+    <div class="sidebar">
+      <div class="header">
+        <h5>Nome Utente</h5>
+        <input type="text" placeholder="Cerca o inizia una nuova chat">
+      </div>
+      <ul class="contact-list">
+        <li v-for="(contact, index) in contacts" :key="index" class="contact"">
+          <img :src=" contact.avatar" alt="avatar" class="avatar">
+          <div>
+            <h6>{{ contact.name }}</h6>
+            <p>Ultimo messaggio: {{ contact.messages[contact.messages.length - 1].message }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+
+  </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="js/script.js"></script>
