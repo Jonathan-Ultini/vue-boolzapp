@@ -168,12 +168,37 @@ createApp({
           ],
         }
       ],
-      selectedContact: null
+      selectedContact: null,  // Rappresenta il contatto selezionato
+      newMessage: '',         // Per tenere traccia del testo inserito dall'utente
     };
   },
   methods: {
+    // Funzione per selezionare un contatto
     selectContact(index) {
       this.selectedContact = this.contacts[index];
+    },
+    // Funzione per inviare un messaggio
+    sendMessage() {
+      if (this.newMessage.trim() !== '' && this.selectedContact) {
+        // Aggiungi il messaggio dell'utente
+        this.selectedContact.messages.push({
+          message: this.newMessage,
+          status: 'sent',
+          date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
+
+        // Pulisci l'input
+        this.newMessage = '';
+
+        // Risposta automatica dopo 1 secondo
+        setTimeout(() => {
+          this.selectedContact.messages.push({
+            message: 'ok',
+            status: 'received',
+            date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          });
+        }, 1000);
+      }
     }
   },
   mounted() {

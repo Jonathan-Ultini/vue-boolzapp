@@ -66,8 +66,9 @@
 
       <!-- Footer della chat -->
       <div class="chat-footer">
-        <input type="text" placeholder="Scrivi un messaggio">
+        <input type="text" v-model="newMessage" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage">
       </div>
+
     </div>
   </div>
 
