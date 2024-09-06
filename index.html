@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="icon" type="image/x-icon"
-    href="https://yt3.googleusercontent.com/UXFC9eFKxjbOcUeEiIFqpywdInXJijIrh5bkfUMPlKhCLKaO6rrTfh5O5IzNTS_2Wap2yBk1J44=s900-c-k-c0x00ffffff-no-rj">
   <title>Vue Boolzapp</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -14,11 +12,26 @@
 <body>
 
   <div id="app" class="container">
+    <!-- Contenitore principale dell'applicazione -->
     <div class="sidebar">
+      <!-- Sidebar a sinistra con l'header e la lista dei contatti -->
       <div class="header">
-        <h5>Nome Utente</h5>
+        <img src="./img/avatar_io.png" alt="avatar" class="avatar">
+        <h5>Sofia</h5>
+      </div>
+
+      <!-- Notifiche -->
+      <div class="notifications">
+        <p>Ricevi notifiche di nuovi messaggi</p>
+        <a href="#">Attiva notifiche desktop</a>
+      </div>
+
+      <!-- Barra di ricerca -->
+      <div class="search">
         <input type="text" placeholder="Cerca o inizia una nuova chat">
       </div>
+
+      <!-- Lista contatti -->
       <ul class="contact-list">
         <li v-for="(contact, index) in contacts" :key="index" class="contact" @click="selectContact(index)">
           <img :src="contact.avatar" alt="avatar" class="avatar">
@@ -31,9 +44,9 @@
     </div>
 
     <div v-if="selectedContact" class="chat">
+      <!-- Header della chat -->
       <div class="chat-header">
         <img :src="selectedContact.avatar" alt="avatar" class="avatar">
-
         <div>
           <h6>{{ selectedContact.name }}</h6>
           <p v-if="selectedContact.messages.length > 0">Ultimo accesso: {{
@@ -42,6 +55,7 @@
         </div>
       </div>
 
+      <!-- Corpo della chat -->
       <div class="chat-body">
         <div v-for="(message, index) in selectedContact.messages" :key="index" class="message"
           :class="{'sent': message.status === 'sent', 'received': message.status === 'received'}">
@@ -50,11 +64,11 @@
         </div>
       </div>
 
+      <!-- Footer della chat -->
       <div class="chat-footer">
         <input type="text" placeholder="Scrivi un messaggio">
       </div>
     </div>
-
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

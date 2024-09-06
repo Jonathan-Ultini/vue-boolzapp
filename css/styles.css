@@ -1,3 +1,4 @@
+/* Stili generali */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,14 +8,26 @@
 html,
 body {
   height: 100%;
-  font-family: Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
-.container {
+body {
+  background: linear-gradient(to bottom, #009688 15%, #D9DBD4 15%, #D9DBD4 70%);
   display: flex;
-  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Contenitore principale dell'applicazione */
+.container {
+  width: 80%;
+  max-width: 1200px;
+  height: 90vh;
+  display: flex;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar */
 .sidebar {
   width: 30%;
   background-color: #f0f0f0;
@@ -30,21 +43,58 @@ body {
   background-image: url('../img/mine.png');
 }
 
-.header,
-.chat-header {
+/* Header utente nella sidebar */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 15px;
   background-color: #ededed;
   border-bottom: 1px solid #ddd;
+  height: 80px;
 }
 
-.header input {
+.header h5 {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+/* Area notifiche */
+.notifications {
+  padding: 10px 15px;
+  background-color: #e0f7fa;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.notifications p {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.notifications a {
+  font-size: 13px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Barra di ricerca */
+.search {
+  padding: 10px 15px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.search input {
   width: 100%;
   padding: 10px;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 
+/* Lista contatti */
 .contact-list {
   flex-grow: 1;
   overflow-y: auto;
@@ -69,6 +119,43 @@ body {
   margin-right: 15px;
 }
 
+.contact h6 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.contact p {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Stili della chat */
+.chat-header {
+  padding: 15px;
+  background-color: #ededed;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+}
+
+.chat-header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.chat-header h6 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.chat-header p {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Corpo della chat */
 .chat-body {
   flex-grow: 1;
   padding: 20px;
@@ -94,6 +181,7 @@ body {
   text-align: left;
 }
 
+/* Footer della chat */
 .chat-footer {
   padding: 15px;
   background-color: #ededed;
