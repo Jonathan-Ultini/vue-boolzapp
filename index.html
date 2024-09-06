@@ -20,8 +20,8 @@
         <input type="text" placeholder="Cerca o inizia una nuova chat">
       </div>
       <ul class="contact-list">
-        <li v-for="(contact, index) in contacts" :key="index" class="contact"">
-          <img :src=" contact.avatar" alt="avatar" class="avatar">
+        <li v-for="(contact, index) in contacts" :key="index" class="contact" @click="selectContact(index)">
+          <img :src="contact.avatar" alt="avatar" class="avatar">
           <div>
             <h6>{{ contact.name }}</h6>
             <p>Ultimo messaggio: {{ contact.messages[contact.messages.length - 1].message }}</p>
@@ -30,7 +30,30 @@
       </ul>
     </div>
 
+    <div v-if="selectedContact" class="chat">
+      <div class="chat-header">
+        <img :src="selectedContact.avatar" alt="avatar" class="avatar">
 
+        <div>
+          <h6>{{ selectedContact.name }}</h6>
+          <p v-if="selectedContact.messages.length > 0">Ultimo accesso: {{
+            selectedContact.messages[selectedContact.messages.length - 1].date }}</p>
+          <p v-else>Ancora nessun messaggio.</p>
+        </div>
+      </div>
+
+      <div class="chat-body">
+        <div v-for="(message, index) in selectedContact.messages" :key="index" class="message"
+          :class="{'sent': message.status === 'sent', 'received': message.status === 'received'}">
+          <p>{{ message.message }}</p>
+          <small>{{ message.date }}</small>
+        </div>
+      </div>
+
+      <div class="chat-footer">
+        <input type="text" placeholder="Scrivi un messaggio">
+      </div>
+    </div>
 
   </div>
 

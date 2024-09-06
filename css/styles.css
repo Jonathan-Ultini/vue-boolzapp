@@ -68,3 +68,42 @@ body {
   border-radius: 50%;
   margin-right: 15px;
 }
+
+.chat-body {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.message {
+  max-width: 60%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.message.sent {
+  background-color: #dcf8c6;
+  margin-left: auto;
+  text-align: right;
+}
+
+.message.received {
+  background-color: #ffffff;
+  text-align: left;
+}
+
+.chat-footer {
+  padding: 15px;
+  background-color: #ededed;
+  border-top: 1px solid #ddd;
+}
+
+.chat-footer input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #fff;
+}

@@ -171,4 +171,12 @@ createApp({
       selectedContact: null
     };
   },
+  methods: {
+    selectContact(index) {
+      this.selectedContact = this.contacts[index];
+    }
+  },
+  mounted() {
+    this.selectedContact = this.contacts[0];  // Seleziona il primo contatto di default
+  }
 }).mount('#app');
