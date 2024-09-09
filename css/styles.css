@@ -12,7 +12,7 @@ body {
 }
 
 body {
-  background: linear-gradient(to bottom, #009688 15%, #D9DBD4 15%, #D9DBD4 70%);
+  background-image: linear-gradient(to bottom, #009688 15%, #D9DBD4 15%);
   display: flex;
   justify-content: center;
   align-items: center;

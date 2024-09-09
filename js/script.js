@@ -170,12 +170,20 @@ createApp({
       ],
       selectedContact: null,  // Rappresenta il contatto selezionato
       newMessage: '',         // Per tenere traccia del testo inserito dall'utente
+      nameSearch: '',         // Per cercare un nome nella lista contatti
     };
+  },
+  computed: {
+    filteredContacts() {
+      return this.contacts.filter(contact =>
+        contact.name.toLowerCase().includes(this.nameSearch.toLowerCase())
+      );
+    },
   },
   methods: {
     // Funzione per selezionare un contatto
     selectContact(index) {
-      this.selectedContact = this.contacts[index];
+      this.selectedContact = this.filteredContacts[index];
     },
     // Funzione per inviare un messaggio
     sendMessage() {

@@ -28,12 +28,12 @@
 
       <!-- Barra di ricerca -->
       <div class="search">
-        <input type="text" placeholder="Cerca o inizia una nuova chat">
+        <input type="text" v-model="nameSearch" placeholder="Cerca o inizia una nuova chat">
       </div>
 
       <!-- Lista contatti -->
       <ul class="contact-list">
-        <li v-for="(contact, index) in contacts" :key="index" class="contact" @click="selectContact(index)">
+        <li v-for="(contact, index) in filteredContacts" :key="index" class="contact" @click="selectContact(index)">
           <img :src="contact.avatar" alt="avatar" class="avatar">
           <div>
             <h6>{{ contact.name }}</h6>
