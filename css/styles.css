@@ -239,29 +239,66 @@ body {
 }
 
 /* Corpo della chat */
+/* Stili per il corpo della chat */
 .chat-body {
   flex-grow: 1;
   padding: 20px;
   overflow-y: auto;
 }
 
+/* Stili dei messaggi */
 .message {
   max-width: 60%;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 8px;
   position: relative;
+  cursor: pointer;
 }
 
+/* Messaggi inviati */
 .message.sent {
   background-color: #dcf8c6;
   margin-left: auto;
   text-align: right;
 }
 
+/* Messaggi ricevuti */
 .message.received {
   background-color: #ffffff;
   text-align: left;
+}
+
+/* Stile per l'icona del menù */
+.message .menu-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: none;
+  cursor: pointer;
+}
+
+/* Mostra l'icona del menù al passaggio del mouse */
+.message:hover .menu-icon {
+  display: inline;
+}
+
+/* Stile per il menù a tendina */
+.dropdown-menu {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  display: none;
+  z-index: 10;
+}
+
+/* Mostra il menù a tendina quando attivo */
+.message.active .dropdown-menu {
+  display: block;
 }
 
 /* Footer della chat */

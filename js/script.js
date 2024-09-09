@@ -174,6 +174,7 @@ createApp({
       selectedContact: null,  // Rappresenta il contatto selezionato
       newMessage: '',         // Per tenere traccia del testo inserito dall'utente
       nameSearch: '',         // Per cercare un nome nella lista contatti
+      activeMessageIndex: null,  // Indica il messaggio su cui è aperto il menù
     };
   },
   computed: {
@@ -186,6 +187,22 @@ createApp({
   methods: {
     selectContact(index) {
       this.selectedContact = this.contacts[index];
+      this.activeMessageIndex = null;  // Reset del messaggio attivo
+    },
+    // Funzione per aprire/chiudere il menù a tendina
+    toggleDropdown(index) {
+      if (this.activeMessageIndex === index) {
+        // Se il menù è già attivo, lo chiudiamo
+        this.activeMessageIndex = null;
+      } else {
+        // Altrimenti, lo apriamo per il messaggio cliccato
+        this.activeMessageIndex = index;
+      }
+    },
+    // Funzione per eliminare un messaggio
+    deleteMessage(index) {
+      this.selectedContact.messages.splice(index, 1);
+      this.activeMessageIndex = null;  // Chiudi il menù dopo l'eliminazione
     },
     sendMessage() {
       if (this.newMessage.trim() !== '' && this.selectedContact) {

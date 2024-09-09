@@ -82,11 +82,23 @@
       <!-- Corpo della chat -->
       <div class="chat-body">
         <div v-for="(message, index) in selectedContact.messages" :key="index" class="message"
-          :class="{'sent': message.status === 'sent', 'received': message.status === 'received'}">
+          :class="{'sent': message.status === 'sent', 'received': message.status === 'received', 'active': activeMessageIndex === index}"
+          @click="toggleDropdown(index)">
+
           <p>{{ message.message }}</p>
           <small>{{ formatDate(message.date) }}</small>
+
+          <!-- Icona del menù -->
+          <span class="menu-icon">⋮</span>
+
+          <!-- Menù a tendina -->
+          <div class="dropdown-menu">
+            <p>Info messaggio: {{ formatDate(message.date) }}</p>
+            <button @click.stop="deleteMessage(index)">Elimina</button>
+          </div>
         </div>
       </div>
+
 
       <!-- Footer della chat -->
       <div class="chat-footer">
