@@ -54,9 +54,36 @@ body {
   height: 80px;
 }
 
-.header h5 {
-  margin-left: 10px;
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user .avatar {
+  margin: 0;
+}
+
+.user h5 {
+  margin-left: 5px;
   font-size: 20px;
+}
+
+.header-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.header-icons a {
+  color: #9ca0a3;
+  text-decoration: none;
+}
+
+.header-icons i {
+  font-size: 20px;
+}
+
+.header-icons a:hover i {
+  color: black;
 }
 
 /* Area notifiche */
@@ -126,6 +153,7 @@ body {
   background-color: #f9f9f9;
   padding-left: 30px;
   box-sizing: border-box;
+  outline: none;
 }
 
 /* Lista contatti */
@@ -165,28 +193,49 @@ body {
 
 /* Stili della chat */
 .chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 15px;
   background-color: #ededed;
   border-bottom: 1px solid #ddd;
-  display: flex;
-  align-items: center;
 }
 
-.chat-header img {
+.chat-header img.avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 15px;
 }
 
-.chat-header h6 {
-  font-size: 16px;
-  margin: 0;
+.header-info {
+  flex-grow: 1;
 }
 
-.chat-header p {
+.header-info h6 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.header-info p {
+  margin: 0;
   font-size: 12px;
   color: #888;
+}
+
+.icon {
+  display: flex;
+  gap: 15px;
+}
+
+.icon i {
+  font-size: 20px;
+  color: #95999e;
+  cursor: pointer;
+}
+
+.icon i:hover {
+  color: black;
 }
 
 /* Corpo della chat */
@@ -217,15 +266,33 @@ body {
 
 /* Footer della chat */
 .chat-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 15px;
   background-color: #ededed;
   border-top: 1px solid #ddd;
 }
 
 .chat-footer input {
+  flex-grow: 1;
+  margin: 0 10px;
   width: 100%;
   padding: 10px;
   border: none;
   border-radius: 4px;
   background-color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+}
+
+.chat-footer i {
+  font-size: 20px;
+  color: #95999e;
+  cursor: pointer;
+}
+
+.chat-footer i:hover {
+  color: black;
 }

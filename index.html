@@ -19,8 +19,18 @@
     <div class="sidebar">
       <!-- Sidebar a sinistra con l'header e la lista dei contatti -->
       <div class="header">
-        <img src="./img/avatar_io.png" alt="avatar" class="avatar">
-        <h5>Sofia</h5>
+        <div class="user">
+          <img src="./img/avatar_io.png" alt="avatar" class="avatar">
+          <h5>Sofia</h5>
+        </div>
+
+        <!-- Contenitore delle icone a destra -->
+        <div class="header-icons">
+          <a href="#"><i class="fa-solid fa-circle-notch"></i></a>
+          <a href="#"><i class="fa-solid fa-message"></i></a>
+          <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+        </div>
+
       </div>
 
       <!-- Notifiche -->
@@ -55,13 +65,19 @@
       <!-- Header della chat -->
       <div class="chat-header">
         <img :src="selectedContact.avatar" alt="avatar" class="avatar">
-        <div>
+        <div class="header-info">
           <h6>{{ selectedContact.name }}</h6>
           <p v-if="selectedContact.messages.length > 0">Ultimo accesso: {{
             selectedContact.messages[selectedContact.messages.length - 1].date }}</p>
           <p v-else>Ancora nessun messaggio.</p>
         </div>
+        <div class="icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="fa-solid fa-paperclip"></i>
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
       </div>
+
 
       <!-- Corpo della chat -->
       <div class="chat-body">
@@ -74,7 +90,9 @@
 
       <!-- Footer della chat -->
       <div class="chat-footer">
+        <i class="fa-regular fa-face-smile"></i>
         <input type="text" v-model="newMessage" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage">
+        <i class="fa-solid fa-microphone"></i>
       </div>
 
     </div>
