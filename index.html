@@ -90,9 +90,15 @@
 
       <!-- Footer della chat -->
       <div class="chat-footer">
-        <i class="fa-regular fa-face-smile"></i>
+        <i class="fa-regular fa-face-smile" @click="showEmojiPicker = !showEmojiPicker"></i>
         <input type="text" v-model="newMessage" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage">
         <i class="fa-solid fa-microphone"></i>
+      </div>
+      <!-- Emoji Picker -->
+      <div v-if="showEmojiPicker" class="emoji-picker">
+        <div v-for="emoji in emojis" :key="emoji" @click="addEmoji(emoji)">
+          {{ emoji }}
+        </div>
       </div>
 
     </div>

@@ -169,6 +169,8 @@ createApp({
           ],
         }
       ],
+      showEmojiPicker: false,
+      emojis: ['😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊'], // Add more emojis as needed
       selectedContact: null,  // Rappresenta il contatto selezionato
       newMessage: '',         // Per tenere traccia del testo inserito dall'utente
       nameSearch: '',         // Per cercare un nome nella lista contatti
@@ -209,7 +211,11 @@ createApp({
     formatDate(dateStr) {
       const dateTime = DateTime.fromFormat(dateStr, 'dd/MM/yyyy HH:mm:ss');
       return dateTime.toLocaleString(DateTime.TIME_SIMPLE);
-    }
+    },
+    addEmoji(emoji) {
+      this.newMessage += emoji;
+      this.showEmojiPicker = false;
+    },
   },
   mounted() {
     this.selectedContact = this.contacts[0];

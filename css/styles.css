@@ -296,3 +296,28 @@ body {
 .chat-footer i:hover {
   color: black;
 }
+
+
+.emoji-picker {
+  position: absolute;
+  bottom: 100px;
+  left: 550px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.emoji-picker div {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.emoji-picker div:hover {
+  background: #f0f0f0;
+  border-radius: 5px;
+}
