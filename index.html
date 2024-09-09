@@ -60,7 +60,7 @@
         <div v-for="(message, index) in selectedContact.messages" :key="index" class="message"
           :class="{'sent': message.status === 'sent', 'received': message.status === 'received'}">
           <p>{{ message.message }}</p>
-          <small>{{ message.date }}</small>
+          <small>{{ formatDate(message.date) }}</small>
         </div>
       </div>
 
@@ -73,6 +73,7 @@
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.2.0/luxon.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 

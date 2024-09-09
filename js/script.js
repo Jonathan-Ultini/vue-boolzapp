@@ -1,6 +1,7 @@
 // Script di base per il progetto
 
 const { createApp } = Vue;
+const { DateTime } = luxon;
 
 createApp({
   data() {
@@ -181,35 +182,36 @@ createApp({
     },
   },
   methods: {
-    // Funzione per selezionare un contatto
     selectContact(index) {
-      this.selectedContact = this.filteredContacts[index];
+      this.selectedContact = this.contacts[index];
     },
-    // Funzione per inviare un messaggio
     sendMessage() {
       if (this.newMessage.trim() !== '' && this.selectedContact) {
-        // Aggiungi il messaggio dell'utente
+        const now = DateTime.now().toISO(); // Utilizza ISO per il salvataggio
+
         this.selectedContact.messages.push({
           message: this.newMessage,
           status: 'sent',
-          date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          date: now
         });
 
-        // Pulisci l'input
         this.newMessage = '';
 
-        // Risposta automatica dopo 1 secondo
         setTimeout(() => {
           this.selectedContact.messages.push({
             message: 'ok',
             status: 'received',
-            date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            date: now
           });
         }, 1000);
       }
+    },
+    formatDate(dateStr) {
+      const dateTime = DateTime.fromFormat(dateStr, 'dd/MM/yyyy HH:mm:ss');
+      return dateTime.toLocaleString(DateTime.TIME_SIMPLE);
     }
   },
   mounted() {
-    this.selectedContact = this.contacts[0];  // Seleziona il primo contatto di default
+    this.selectedContact = this.contacts[0];
   }
 }).mount('#app');
