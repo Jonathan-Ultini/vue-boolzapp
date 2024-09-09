@@ -61,22 +61,42 @@ body {
 
 /* Area notifiche */
 .notifications {
+  display: flex;
+  align-items: center;
   padding: 10px 15px;
   background-color: #e0f7fa;
   border-bottom: 1px solid #ddd;
   text-align: left;
 }
 
-.notifications p {
+.notifications i {
+  font-size: 24px;
+  color: #007bff;
+  margin-right: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.notifications-content {
+  flex: 1;
+}
+
+.notifications-content p {
   font-size: 14px;
   color: #333;
   margin-bottom: 5px;
+  margin: 0;
 }
 
-.notifications a {
+.notifications-content a {
   font-size: 13px;
   color: #007bff;
   text-decoration: none;
+}
+
+.notifications-content a:hover {
+  text-decoration: underline;
 }
 
 /* Barra di ricerca */
