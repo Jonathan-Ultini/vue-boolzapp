@@ -55,10 +55,13 @@
           <img :src="contact.avatar" alt="avatar" class="avatar">
           <div>
             <h6>{{ contact.name }}</h6>
-            <p>Ultimo messaggio: {{ contact.messages[contact.messages.length - 1].message }}</p>
+            <p>Ultimo messaggio: {{ getLastMessagePreview(contact)}}</p>
+            <p>Data: {{getLastMessageTime(contact)}}</p>
           </div>
         </li>
       </ul>
+
+
     </div>
 
     <div v-if="selectedContact" class="chat">
@@ -82,11 +85,19 @@
       <!-- Corpo della chat -->
       <div class="chat-body">
         <div v-for="(message, index) in selectedContact.messages" :key="index" class="message"
-          :class="{'sent': message.status === 'sent', 'received': message.status === 'received'}">
+          :class="{'sent': message.status === 'sent', 'received': message.status === 'received'}"
+          @click="toggleDropdown(index)">
           <p>{{ message.message }}</p>
-          <small>{{ formatDate(message.date)}}</small>
+          <small>{{ formatDate(message.date) }}</small>
+
+          <!-- Menu a tendina visibile solo per il messaggio selezionato -->
+          <div v-if="dropdownIndex === index" class="dropdown-menu">
+            <button @click="deleteMessage(index)">Elimina messaggio</button>
+            <button>Info</button>
+          </div>
         </div>
       </div>
+
 
 
       <!-- Footer della chat -->
