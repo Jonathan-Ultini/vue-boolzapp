@@ -263,7 +263,7 @@ createApp({
       return lastMessage ? lastMessage.date : '';
     },
     checkInput() {
-      this.inputActive = this.newMessage.trim().length > 0;
+      this.inputActive = this.newMessage.trim() !== '';
     },
   },
   mounted() {

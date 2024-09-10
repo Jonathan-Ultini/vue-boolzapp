@@ -84,6 +84,10 @@
 
       <!-- Corpo della chat -->
       <div class="chat-body">
+        <div v-if="!selectedContact" class="welcome-screen">
+          <p>Benvenuto! Seleziona un contatto per iniziare la chat.</p>
+        </div>
+
         <div v-for="(message, index) in selectedContact.messages" :key="index" class="message"
           :class="{'sent': message.status === 'sent', 'received': message.status === 'received'}"
           @click="toggleDropdown(index)">
@@ -105,7 +109,8 @@
         <i class="fa-regular fa-face-smile" @click="showEmojiPicker = !showEmojiPicker"></i>
         <input type="text" v-model="newMessage" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage"
           @input="checkInput">
-        <i :class="inputActive ? 'fa-solid fa-paper-plane' : 'fa-solid fa-microphone'" @click="sendMessage()"></i>
+        <i :class="inputActive ? 'fa-solid fa-paper-plane' : 'fa-solid fa-microphone'" @click="sendMessage()"
+          :class="{disabled: !inputActive}"></i>
       </div>
 
 
