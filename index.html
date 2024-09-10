@@ -103,8 +103,9 @@
       <!-- Footer della chat -->
       <div class="chat-footer">
         <i class="fa-regular fa-face-smile" @click="showEmojiPicker = !showEmojiPicker"></i>
-        <input type="text" v-model="newMessage" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage">
-        <i class="fa-solid fa-microphone"></i>
+        <input type="text" v-model="newMessage" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage"
+          @input="checkInput">
+        <i :class="inputActive ? 'fa-solid fa-paper-plane' : 'fa-solid fa-microphone'" @click="sendMessage()"></i>
       </div>
 
 

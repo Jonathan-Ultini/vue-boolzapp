@@ -175,6 +175,7 @@ createApp({
       newMessage: '',         // Per tenere traccia del testo inserito dall'utente
       nameSearch: '',         // Per cercare un nome nella lista contatti
       dropdownIndex: null, // Indice del messaggio che ha il menu a tendina aperto
+      inputActive: false //controllo input testo
     };
   },
   computed: {
@@ -206,7 +207,8 @@ createApp({
       if (this.newMessage.trim() !== '') {
         // Aggiungi il messaggio dell'utente
         this.addMessage(this.newMessage, 'sent');
-        this.newMessage = '';
+        this.newMessage = ''; // Pulisce il campo di input
+        this.inputActive = false; // Ritorna l'icona al microfono
 
         // Risposta automatica dopo 1 secondo
         setTimeout(() => {
@@ -251,6 +253,9 @@ createApp({
     getLastMessageTime(contact) {
       const lastMessage = contact.messages[contact.messages.length - 1];
       return lastMessage ? lastMessage.date : '';
+    },
+    checkInput() {
+      this.inputActive = this.newMessage.trim().length > 0;
     },
   },
   mounted() {
