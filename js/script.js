@@ -217,8 +217,16 @@ createApp({
       }
     },
     formatDate(dateStr) {
+      const now = DateTime.now();
       const dateTime = DateTime.fromFormat(dateStr, 'dd/MM/yyyy HH:mm:ss');
-      return dateTime.isValid ? dateTime.toFormat('HH:mm') : dateStr;
+      if (!dateTime.isValid) return dateStr;
+
+      // Controlla se il messaggio è dello stesso giorno
+      if (dateTime.hasSame(now, 'day')) {
+        return dateTime.toFormat('HH:mm');
+      } else {
+        return dateTime.toFormat('dd/MM/yyyy HH:mm');
+      }
     },
     addEmoji(emoji) {
       this.newMessage += emoji;
