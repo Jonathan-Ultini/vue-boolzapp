@@ -174,7 +174,6 @@ createApp({
       selectedContact: null,  // Rappresenta il contatto selezionato
       newMessage: '',         // Per tenere traccia del testo inserito dall'utente
       nameSearch: '',         // Per cercare un nome nella lista contatti
-      activeMessageIndex: null,  // Indica il messaggio su cui è aperto il menù
     };
   },
   computed: {
@@ -187,47 +186,42 @@ createApp({
   methods: {
     selectContact(index) {
       this.selectedContact = this.contacts[index];
-      this.activeMessageIndex = null;  // Reset del messaggio attivo
     },
-    // Funzione per aprire/chiudere il menù a tendina
-    toggleDropdown(index) {
-      if (this.activeMessageIndex === index) {
-        // Se il menù è già attivo, lo chiudiamo
-        this.activeMessageIndex = null;
-      } else {
-        // Altrimenti, lo apriamo per il messaggio cliccato
-        this.activeMessageIndex = index;
-      }
-    },
-    // Funzione per eliminare un messaggio
-    deleteMessage(index) {
-      this.selectedContact.messages.splice(index, 1);
-      this.activeMessageIndex = null;  // Chiudi il menù dopo l'eliminazione
-    },
+    // Funzione per inviare un messaggio
     sendMessage() {
       if (this.newMessage.trim() !== '' && this.selectedContact) {
-        const now = DateTime.now().toISO(); // Utilizza ISO per il salvataggio
+        // Salva solo l'ora e minuti per il nuovo messaggio
+        const currentTime = DateTime.now().toFormat('HH:mm');
 
+        // Aggiungi il messaggio dell'utente
         this.selectedContact.messages.push({
           message: this.newMessage,
           status: 'sent',
-          date: now
+          date: currentTime
         });
 
+        // Pulisci l'input
         this.newMessage = '';
 
+        // Risposta automatica dopo 1 secondo
         setTimeout(() => {
           this.selectedContact.messages.push({
             message: 'ok',
             status: 'received',
-            date: now
+            date: currentTime
           });
         }, 1000);
       }
     },
     formatDate(dateStr) {
       const dateTime = DateTime.fromFormat(dateStr, 'dd/MM/yyyy HH:mm:ss');
-      return dateTime.toLocaleString(DateTime.TIME_SIMPLE);
+
+      // Se la data è valida, ritorna l'orario
+      if (dateTime.isValid) {
+        return dateTime.toFormat('HH:mm');
+      } else {
+        return dateStr;
+      }
     },
     addEmoji(emoji) {
       this.newMessage += emoji;

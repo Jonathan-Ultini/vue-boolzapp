@@ -82,20 +82,9 @@
       <!-- Corpo della chat -->
       <div class="chat-body">
         <div v-for="(message, index) in selectedContact.messages" :key="index" class="message"
-          :class="{'sent': message.status === 'sent', 'received': message.status === 'received', 'active': activeMessageIndex === index}"
-          @click="toggleDropdown(index)">
-
+          :class="{'sent': message.status === 'sent', 'received': message.status === 'received'}">
           <p>{{ message.message }}</p>
-          <small>{{ formatDate(message.date) }}</small>
-
-          <!-- Icona del menù -->
-          <span class="menu-icon">⋮</span>
-
-          <!-- Menù a tendina -->
-          <div class="dropdown-menu">
-            <p>Info messaggio: {{ formatDate(message.date) }}</p>
-            <button @click.stop="deleteMessage(index)">Elimina</button>
-          </div>
+          <small>{{ formatDate(message.date)}}</small>
         </div>
       </div>
 
@@ -106,6 +95,8 @@
         <input type="text" v-model="newMessage" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage">
         <i class="fa-solid fa-microphone"></i>
       </div>
+
+
       <!-- Emoji Picker -->
       <div v-if="showEmojiPicker" class="emoji-picker">
         <div v-for="emoji in emojis" :key="emoji" @click="addEmoji(emoji)">
